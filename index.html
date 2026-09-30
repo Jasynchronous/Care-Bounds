@@ -1,439 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>CareRounds – Nursing App</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root {
-      --bg: #f3f7f6;
-      --card: #fff;
-      --ink: #0f2a2b;
-      --mute: #5d7576;
-      --line: #dde8e6;
-      --brand: #0b6e6e;
-      --brand2: #12908e;
-      --soft: #dff3ef;
-      --warn: #e5484d;
-      --warnsoft: #fde8e8;
-      --amb: #b7791f;
-      --ambsoft: #fdf1d8;
-      box-sizing: border-box;
-      padding-top: env(safe-area-inset-top, 0px);
-      padding-bottom: env(safe-area-inset-bottom, 0px)
-    }
-
-    @media (prefers-color-scheme:dark) {
-      :root:not([data-theme=light]) {
-        --bg: #0a1718;
-        --card: #122324;
-        --ink: #e6f2f0;
-        --mute: #8fabab;
-        --line: #22393a;
-        --brand: #3fc1b8;
-        --brand2: #2aa79f;
-        --soft: #12393a;
-        --warnsoft: #3a1a1c;
-        --ambsoft: #3a2f14;
-        --amb: #f0b955
-      }
-    }
-
-    :root[data-theme=dark] {
-      --bg: #0a1718;
-      --card: #122324;
-      --ink: #e6f2f0;
-      --mute: #8fabab;
-      --line: #22393a;
-      --brand: #3fc1b8;
-      --brand2: #2aa79f;
-      --soft: #12393a;
-      --warnsoft: #3a1a1c;
-      --ambsoft: #3a2f14;
-      --amb: #f0b955
-    }
-
-    html,
-    body {
-      height: 100%;
-      margin: 0
-    }
-
-    html {
-      scroll-padding-top: env(safe-area-inset-top, 0px)
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 20px
-    }
-
-    .mute {
-      color: var(--mute)
-    }
-
-    .brand {
-      color: var(--brand)
-    }
-
-    .btn {
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      color: #fff;
-      border-radius: 14px;
-      font-weight: 700;
-      padding: .8rem 1.2rem;
-      transition: transform .15s
-    }
-
-    .btn:active {
-      transform: scale(.97)
-    }
-
-    .inp {
-      width: 100%;
-      background: var(--bg);
-      border: 1.5px solid var(--line);
-      border-radius: 14px;
-      padding: .85rem 1rem;
-      color: var(--ink);
-      outline: none
-    }
-
-    .inp:focus {
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px var(--soft)
-    }
-
-    .chip {
-      font-size: .72rem;
-      font-weight: 700;
-      padding: .2rem .6rem;
-      border-radius: 99px
-    }
-
-    .ok {
-      background: var(--soft);
-      color: var(--brand)
-    }
-
-    .crit {
-      background: var(--warnsoft);
-      color: var(--warn)
-    }
-
-    .watch {
-      background: var(--ambsoft);
-      color: var(--amb)
-    }
-
-    .nav a {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      padding: .7rem 1rem;
-      border-radius: 14px;
-      font-weight: 600;
-      color: var(--mute);
-      cursor: pointer
-    }
-
-    .nav a.on {
-      background: var(--soft);
-      color: var(--brand)
-    }
-
-    .pulse {
-      animation: pl 1.6s infinite
-    }
-
-    @keyframes pl {
-      50% {
-        opacity: .35
-      }
-    }
-
-    .shake {
-      animation: sh .35s
-    }
-
-    @keyframes sh {
-      25% {
-        transform: translateX(-8px)
-      }
-
-      75% {
-        transform: translateX(8px)
-      }
-    }
-
-    @media (prefers-reduced-motion:reduce) {
-
-      .pulse,
-      .shake {
-        animation: none
-      }
-    }
-
-    #login {
-      background: radial-gradient(circle at 20% 10%, #12908e 0, #0b4f52 45%, #072f33 100%)
-    }
-
-    .hide {
-      display: none !important
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--brand);
-      outline-offset: 2px
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
-    rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b6e6e">
+<meta name="mobile-web-app-capable" content="yes">
+<title>CareRounds – Nursing App</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--bg:#f3f7f6;--card:#fff;--ink:#0f2a2b;--mute:#5d7576;--line:#dde8e6;--brand:#0b6e6e;--brand2:#12908e;--soft:#dff3ef;--warn:#e5484d;--warnsoft:#fde8e8;--amb:#b7791f;--ambsoft:#fdf1d8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0a1718;--card:#122324;--ink:#e6f2f0;--mute:#8fabab;--line:#22393a;--brand:#3fc1b8;--brand2:#2aa79f;--soft:#12393a;--warnsoft:#3a1a1c;--ambsoft:#3a2f14;--amb:#f0b955}}
+:root[data-theme=dark]{--bg:#0a1718;--card:#122324;--ink:#e6f2f0;--mute:#8fabab;--line:#22393a;--brand:#3fc1b8;--brand2:#2aa79f;--soft:#12393a;--warnsoft:#3a1a1c;--ambsoft:#3a2f14;--amb:#f0b955}
+html,body{height:100%;margin:0}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px}
+.mute{color:var(--mute)}.brand{color:var(--brand)}
+.btn{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:14px;font-weight:700;padding:.8rem 1.2rem;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.inp{width:100%;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:.85rem 1rem;color:var(--ink);outline:none}
+.inp:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--soft)}
+.chip{font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:99px}
+.ok{background:var(--soft);color:var(--brand)}.crit{background:var(--warnsoft);color:var(--warn)}.watch{background:var(--ambsoft);color:var(--amb)}
+.nav a{display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border-radius:14px;font-weight:600;color:var(--mute);cursor:pointer}
+.nav a.on{background:var(--soft);color:var(--brand)}
+.pulse{animation:pl 1.6s infinite}@keyframes pl{50%{opacity:.35}}
+.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@media (prefers-reduced-motion:reduce){.pulse,.shake{animation:none}}
+#login{background:radial-gradient(circle at 20% 10%,#12908e 0,#0b4f52 45%,#072f33 100%)}
+.hide{display:none!important}
+/* Core layout in plain CSS so mobile/desktop switching never depends on the Tailwind CDN */
+#app{display:block;width:100%;max-width:100vw}
+#side{display:none}
+#bn{display:flex}
+#view,.card,.grid>*{min-width:0}
+.card{overflow-wrap:anywhere}
+#view{max-width:100%}
+@media (min-width:768px){#app{display:flex}#side{display:flex}#bn{display:none}}
+@media (max-width:767px){#side{display:none!important}#bn{display:flex!important}header h1{font-size:1.15rem}}
+html{-webkit-text-size-adjust:100%}body{overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+.inp{font-size:16px;min-height:48px}
+button:not(.chip){min-height:44px}
+button,label,.nav a{touch-action:manipulation}
+input[type=checkbox]{accent-color:var(--brand)}
+#mb{border-radius:24px 24px 0 0;padding-bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));animation:up .25s ease-out}
+#mb::before{content:"";display:block;width:40px;height:4px;border-radius:9px;background:var(--line);margin:-8px auto 14px}
+@keyframes up{from{transform:translateY(40px);opacity:.4}}
+@media (min-width:768px){#mb{border-radius:24px}#mb::before{display:none}}
+@media (max-width:480px){.vg{grid-template-columns:repeat(2,minmax(0,1fr))!important}.vg .text-xl{font-size:1.1rem}}
+@media (prefers-reduced-motion:reduce){#mb{animation:none}}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-  <!-- LOGIN -->
-  <main id="login" class="min-h-screen flex items-center justify-center p-5">
-    <div class="w-full max-w-4xl grid md:grid-cols-2 rounded-[28px] overflow-hidden shadow-2xl"
-      style="background:var(--card)">
-      <div class="hidden md:flex flex-col justify-between p-10 text-white"
-        style="background:linear-gradient(160deg,#0b6e6e,#072f33)">
-        <div class="text-2xl font-extrabold">✚ CareRounds</div>
-        <div>
-          <h1 class="text-4xl font-extrabold leading-tight">Every patient.<br>Every dose.<br>On time.</h1>
-          <p class="mt-4 opacity-80">Vitals, medications, tasks and handover in one calm workspace for the ward.</p>
-        </div>
-        <div class="text-sm opacity-70">Secure sign-in for licensed staff</div>
+<!-- LOGIN -->
+<main id="login" class="min-h-[100dvh] flex items-center justify-center p-3 sm:p-5">
+  <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 rounded-[28px] overflow-hidden shadow-2xl" style="background:var(--card)">
+    <div class="hidden md:flex flex-col justify-between p-10 text-white" style="background:linear-gradient(160deg,#0b6e6e,#072f33)">
+      <div class="text-2xl font-extrabold">✚ CareRounds</div>
+      <div>
+        <h1 class="text-4xl font-extrabold leading-tight">Every patient.<br>Every dose.<br>On time.</h1>
+        <p class="mt-4 opacity-80">Vitals, medications, tasks and handover in one calm workspace for the ward.</p>
       </div>
-      <form id="lf" class="p-7 md:p-10" autocomplete="on">
-        <div class="md:hidden text-xl font-extrabold brand mb-6">✚ CareRounds</div>
-        <h2 class="text-2xl font-extrabold">Welcome back</h2>
-        <p class="mute mt-1 mb-6">Sign in to start your shift.</p>
-        <label class="text-sm font-semibold">Username</label>
-        <input id="u" class="inp mt-1 mb-4" placeholder="e.g. nurse" autocomplete="username">
-        <label class="text-sm font-semibold">Password</label>
-        <div class="relative mt-1">
-          <input id="p" type="password" class="inp pr-16" placeholder="Enter password" autocomplete="current-password">
-          <button type="button" id="eye"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-bold brand">Show</button>
-        </div>
-        <p id="err" class="hide text-sm mt-3 font-semibold" style="color:var(--warn)">Wrong username or password. Try
-          again.</p>
-        <div class="flex justify-between items-center my-5 text-sm">
-          <label class="flex gap-2 items-center"><input type="checkbox" checked> Keep me signed in</label>
-          <a class="brand font-semibold cursor-pointer" onclick="fill()">Use demo login</a>
-        </div>
-        <button class="btn w-full">Sign in</button>
-        <p class="mute text-xs mt-5 text-center">Demo: <b>nurse</b> / <b>care1234</b></p>
-      </form>
+      <div class="text-sm opacity-70">Secure sign-in for licensed staff</div>
     </div>
-  </main>
-
-  <!-- APP -->
-  <div id="app" class="hide min-h-screen md:flex">
-    <aside class="hidden md:flex flex-col w-64 p-5 border-r sticky top-0 h-screen"
-      style="border-color:var(--line);background:var(--card)">
-      <div class="text-xl font-extrabold brand mb-8">✚ CareRounds</div>
-      <nav class="nav flex flex-col gap-1" id="sn"></nav>
-      <button onclick="logout()" class="mt-auto nav"><a>↩ Sign out</a></button>
-    </aside>
-    <div class="flex-1 min-w-0 pb-24 md:pb-8">
-      <header class="flex items-center justify-between p-4 md:px-8 md:pt-7">
-        <div>
-          <p class="mute text-sm" id="date"></p>
-          <h1 class="text-2xl md:text-3xl font-extrabold" id="hi">Good day</h1>
-        </div>
-        <div class="flex items-center gap-2">
-          <button onclick="toggleTheme()" class="card w-11 h-11" aria-label="Toggle theme">◐</button>
-          <button onclick="go('alerts')" class="card w-11 h-11 relative" aria-label="Alerts">🔔<span id="bell"
-              class="absolute -top-1 -right-1 text-[10px] font-bold text-white rounded-full w-5 h-5 flex items-center justify-center"
-              style="background:var(--warn)">3</span></button>
-          <button onclick="logout()" class="md:hidden card w-11 h-11" aria-label="Sign out">↩</button>
-        </div>
-      </header>
-      <main id="view" class="px-4 md:px-8"></main>
-    </div>
-    <nav id="bn" class="md:hidden nav fixed bottom-0 inset-x-0 flex justify-around p-2 border-t"
-      style="background:var(--card);border-color:var(--line);padding-bottom:calc(.5rem + env(safe-area-inset-bottom,0px))">
-    </nav>
+    <form id="lf" class="p-7 md:p-10" autocomplete="on">
+      <div class="md:hidden text-xl font-extrabold brand mb-6">✚ CareRounds</div>
+      <h2 class="text-2xl font-extrabold">Welcome back</h2>
+      <p class="mute mt-1 mb-6">Sign in to start your shift.</p>
+      <label class="text-sm font-semibold">Username</label>
+      <input id="u" class="inp mt-1 mb-4" placeholder="e.g. nurse" autocomplete="username">
+      <label class="text-sm font-semibold">Password</label>
+      <div class="relative mt-1">
+        <input id="p" type="password" class="inp pr-16" placeholder="Enter password" autocomplete="current-password">
+        <button type="button" id="eye" class="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-bold brand">Show</button>
+      </div>
+      <p id="err" class="hide text-sm mt-3 font-semibold" style="color:var(--warn)">Wrong username or password. Try again.</p>
+      <div class="flex justify-between items-center my-5 text-sm">
+        <label class="flex gap-2 items-center"><input type="checkbox" checked> Keep me signed in</label>
+        <a class="brand font-semibold cursor-pointer" onclick="fill()">Use demo login</a>
+      </div>
+      <button class="btn w-full">Sign in</button>
+      <p class="mute text-xs mt-5 text-center">Demo: <b>nurse</b> / <b>care1234</b></p>
+    </form>
   </div>
+</main>
 
-  <div id="modal" class="hide fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-6"
-    style="background:rgba(0,0,0,.5)" onclick="if(event.target===this)closeM()">
-    <div id="mb" class="card w-full md:max-w-lg max-h-[90vh] overflow-auto p-6" style="border-radius:24px 24px 0 0">
-    </div>
+<!-- APP -->
+<div id="app" class="hide min-h-[100dvh] md:flex">
+  <aside id="side" class="hidden md:flex flex-col w-64 p-5 border-r sticky top-0 h-screen" style="border-color:var(--line);background:var(--card)">
+    <div class="text-xl font-extrabold brand mb-8">✚ CareRounds</div>
+    <nav class="nav flex flex-col gap-1" id="sn"></nav>
+    <button onclick="logout()" class="mt-auto nav"><a>↩ Sign out</a></button>
+  </aside>
+  <div class="flex-1 min-w-0 pb-24 md:pb-8">
+    <header class="flex items-center justify-between gap-2 p-4 md:px-8 md:pt-7">
+      <div class="min-w-0">
+        <p class="mute text-sm" id="date"></p>
+        <h1 class="text-xl md:text-3xl font-extrabold" id="hi">Good day</h1>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleTheme()" class="card w-11 h-11" aria-label="Toggle theme">◐</button>
+        <button onclick="go('alerts')" class="card w-11 h-11 relative" aria-label="Alerts">🔔<span id="bell" class="absolute -top-1 -right-1 text-[10px] font-bold text-white rounded-full w-5 h-5 flex items-center justify-center" style="background:var(--warn)">3</span></button>
+        <button onclick="logout()" class="md:hidden card w-11 h-11" aria-label="Sign out">↩</button>
+      </div>
+    </header>
+    <main id="view" class="px-4 md:px-8"></main>
   </div>
-  <div id="toast" class="hide fixed left-1/2 -translate-x-1/2 bottom-24 md:bottom-8 z-50 btn shadow-xl"></div>
+  <nav id="bn" class="md:hidden nav fixed bottom-0 inset-x-0 flex justify-around p-2 border-t" style="background:var(--card);border-color:var(--line);padding-bottom:calc(.5rem + env(safe-area-inset-bottom,0px))"></nav>
+</div>
 
-  <script>
-    const $ = s => document.querySelector(s);
-    const NAV = [['home', '⌂', 'Home'], ['patients', '☺', 'Patients'], ['meds', '💊', 'Meds'], ['tasks', '✔', 'Tasks'], ['tools', '⚕', 'Tools']];
-    let P = [
-      { id: 1, name: 'Maria Santos', age: 67, bed: 'A-04', dx: 'Pneumonia', st: 'crit', hr: 112, bp: '98/60', spo2: 91, t: 38.6, note: 'O2 2L nasal cannula. Monitor resp rate q1h.' },
-      { id: 2, name: 'Jose Reyes', age: 54, bed: 'A-07', dx: 'Post-op appendectomy', st: 'watch', hr: 88, bp: '126/82', spo2: 96, t: 37.8, note: 'Pain 5/10. Check wound dressing.' },
-      { id: 3, name: 'Ana Dizon', age: 32, bed: 'B-02', dx: 'Dengue fever', st: 'watch', hr: 96, bp: '110/70', spo2: 97, t: 38.1, note: 'Platelets due 2pm. Encourage oral fluids.' },
-      { id: 4, name: 'Ramon Cruz', age: 71, bed: 'B-05', dx: 'Type 2 diabetes', st: 'ok', hr: 74, bp: '132/84', spo2: 98, t: 36.8, note: 'Capillary glucose before meals.' },
-      { id: 5, name: 'Liza Tan', age: 45, bed: 'C-01', dx: 'Hypertension', st: 'ok', hr: 70, bp: '128/80', spo2: 99, t: 36.6, note: 'Discharge teaching this afternoon.' }];
-    let M = [{ t: '08:00', p: 'Maria Santos', d: 'Ceftriaxone 1 g IV', done: true }, { t: '09:00', p: 'Jose Reyes', d: 'Paracetamol 500 mg PO', done: true }, { t: '10:00', p: 'Ramon Cruz', d: 'Insulin 10 units SC', done: false }, { t: '11:00', p: 'Ana Dizon', d: 'IV fluids NSS 1 L', done: false }, { t: '12:00', p: 'Liza Tan', d: 'Amlodipine 5 mg PO', done: false }, { t: '14:00', p: 'Maria Santos', d: 'Salbutamol neb', done: false }];
-    let T = [{ x: 'Check vitals – Bed A-04', done: false, hi: 1 }, { x: 'Change dressing – Bed A-07', done: false }, { x: 'Blood draw – Bed B-02', done: false, hi: 1 }, { x: 'Discharge teaching – Bed C-01', done: false }, { x: 'Update I&O charts', done: true }];
-    let A = [{ c: 'crit', x: 'Maria Santos SpO₂ 91% – below 94% target', t: '2 min ago' }, { c: 'watch', x: 'Ana Dizon temperature 38.1 °C', t: '18 min ago' }, { c: 'watch', x: 'Insulin for Ramon Cruz due in 15 min', t: '25 min ago' }];
-    let cur = 'home';
-    const lab = { crit: 'Critical', watch: 'Watch', ok: 'Stable' };
+<div id="modal" class="hide fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-6" style="background:rgba(0,0,0,.5)" onclick="if(event.target===this)closeM()">
+  <div id="mb" class="card w-full md:max-w-lg max-h-[90vh] overflow-auto p-6" ></div>
+</div>
+<div id="toast" class="hide fixed left-1/2 -translate-x-1/2 bottom-24 md:bottom-8 z-50 btn shadow-xl"></div>
 
-    function fill() { $('#u').value = 'nurse'; $('#p').value = 'care1234' }
-    $('#eye').onclick = () => { const p = $('#p'); const s = p.type === 'password'; p.type = s ? 'text' : 'password'; $('#eye').textContent = s ? 'Hide' : 'Show' };
-    $('#lf').onsubmit = e => {
-      e.preventDefault();
-      if ($('#u').value.trim().toLowerCase() === 'nurse' && $('#p').value === 'care1234') { $('#err').classList.add('hide'); $('#login').classList.add('hide'); $('#app').classList.remove('hide'); init() }
-      else { $('#err').classList.remove('hide'); const f = $('#lf'); f.classList.remove('shake'); void f.offsetWidth; f.classList.add('shake') }
-    };
-    function logout() { $('#app').classList.add('hide'); $('#login').classList.remove('hide'); $('#p').value = ''; toast('Signed out') }
-    function toggleTheme() { const r = document.documentElement; const d = r.dataset.theme === 'dark' || (!r.dataset.theme && matchMedia('(prefers-color-scheme:dark)').matches); r.dataset.theme = d ? 'light' : 'dark' }
-    function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.remove('hide'); clearTimeout(t.h); t.h = setTimeout(() => t.classList.add('hide'), 2200) }
-    function openM(h) { $('#mb').innerHTML = h; $('#modal').classList.remove('hide') }
-    function closeM() { $('#modal').classList.add('hide') }
+<script>
+const $=s=>document.querySelector(s);
+const NAV=[['home','⌂','Home'],['patients','☺','Patients'],['meds','💊','Meds'],['tasks','✔','Tasks'],['tools','⚕','Tools']];
+let P=[
+{id:1,name:'Maria Santos',age:67,bed:'A-04',dx:'Pneumonia',st:'crit',hr:112,bp:'98/60',spo2:91,t:38.6,note:'O2 2L nasal cannula. Monitor resp rate q1h.'},
+{id:2,name:'Jose Reyes',age:54,bed:'A-07',dx:'Post-op appendectomy',st:'watch',hr:88,bp:'126/82',spo2:96,t:37.8,note:'Pain 5/10. Check wound dressing.'},
+{id:3,name:'Ana Dizon',age:32,bed:'B-02',dx:'Dengue fever',st:'watch',hr:96,bp:'110/70',spo2:97,t:38.1,note:'Platelets due 2pm. Encourage oral fluids.'},
+{id:4,name:'Ramon Cruz',age:71,bed:'B-05',dx:'Type 2 diabetes',st:'ok',hr:74,bp:'132/84',spo2:98,t:36.8,note:'Capillary glucose before meals.'},
+{id:5,name:'Liza Tan',age:45,bed:'C-01',dx:'Hypertension',st:'ok',hr:70,bp:'128/80',spo2:99,t:36.6,note:'Discharge teaching this afternoon.'}];
+let M=[{t:'08:00',p:'Maria Santos',d:'Ceftriaxone 1 g IV',done:true},{t:'09:00',p:'Jose Reyes',d:'Paracetamol 500 mg PO',done:true},{t:'10:00',p:'Ramon Cruz',d:'Insulin 10 units SC',done:false},{t:'11:00',p:'Ana Dizon',d:'IV fluids NSS 1 L',done:false},{t:'12:00',p:'Liza Tan',d:'Amlodipine 5 mg PO',done:false},{t:'14:00',p:'Maria Santos',d:'Salbutamol neb',done:false}];
+let T=[{x:'Check vitals – Bed A-04',done:false,hi:1},{x:'Change dressing – Bed A-07',done:false},{x:'Blood draw – Bed B-02',done:false,hi:1},{x:'Discharge teaching – Bed C-01',done:false},{x:'Update I&O charts',done:true}];
+let A=[{c:'crit',x:'Maria Santos SpO₂ 91% – below 94% target',t:'2 min ago'},{c:'watch',x:'Ana Dizon temperature 38.1 °C',t:'18 min ago'},{c:'watch',x:'Insulin for Ramon Cruz due in 15 min',t:'25 min ago'}];
+let cur='home';
+const lab={crit:'Critical',watch:'Watch',ok:'Stable'};
 
-    function init() {
-      const h = new Date().getHours();
-      $('#hi').textContent = (h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening') + ', Nurse Andrea';
-      $('#date').textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
-      const mk = (c) => NAV.map(n => `<a data-v="${n[0]}" class="${c}" onclick="go('${n[0]}')"><span>${n[1]}</span><span>${n[2]}</span></a>`).join('');
-      $('#sn').innerHTML = mk('');
-      $('#bn').innerHTML = NAV.map(n => `<a data-v="${n[0]}" class="flex-col !gap-0 !px-3 !py-1.5 text-xs" onclick="go('${n[0]}')"><span class="text-lg">${n[1]}</span>${n[2]}</a>`).join('');
-      go('home')
-    }
-    function go(v) {
-      cur = v; document.querySelectorAll('[data-v]').forEach(a => a.classList.toggle('on', a.dataset.v === v));
-      $('#view').innerHTML = ({ home, patients, meds, tasks, tools, alerts })[v](); scrollTo(0, 0); $('#bell').textContent = A.length
-    }
+function fill(){$('#u').value='nurse';$('#p').value='care1234'}
+$('#eye').onclick=()=>{const p=$('#p');const s=p.type==='password';p.type=s?'text':'password';$('#eye').textContent=s?'Hide':'Show'};
+$('#lf').onsubmit=e=>{e.preventDefault();
+ if($('#u').value.trim().toLowerCase()==='nurse'&&$('#p').value==='care1234'){$('#err').classList.add('hide');$('#login').classList.add('hide');$('#app').classList.remove('hide');init()}
+ else{$('#err').classList.remove('hide');const f=$('#lf');f.classList.remove('shake');void f.offsetWidth;f.classList.add('shake')}};
+function logout(){$('#app').classList.add('hide');$('#login').classList.remove('hide');$('#p').value='';toast('Signed out')}
+function toggleTheme(){const r=document.documentElement;const d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);r.dataset.theme=d?'light':'dark'}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.remove('hide');clearTimeout(t.h);t.h=setTimeout(()=>t.classList.add('hide'),2200)}
+function openM(h){$('#mb').innerHTML=h;$('#modal').classList.remove('hide')}
+function closeM(){$('#modal').classList.add('hide')}
 
-    const pRow = p => `<button onclick="pat(${p.id})" class="card p-4 w-full text-left flex items-center gap-4">
- <div class="w-12 h-12 rounded-full flex items-center justify-center font-extrabold ${p.st}">${p.name.split(' ').map(x => x[0]).join('')}</div>
+function init(){
+ const h=new Date().getHours();
+ $('#hi').textContent=(h<12?'Good morning':h<18?'Good afternoon':'Good evening')+', Nurse Andrea';
+ $('#date').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
+ const mk=(c)=>NAV.map(n=>`<a data-v="${n[0]}" class="${c}" onclick="go('${n[0]}')"><span>${n[1]}</span><span>${n[2]}</span></a>`).join('');
+ $('#sn').innerHTML=mk('');
+ $('#bn').innerHTML=NAV.map(n=>`<a data-v="${n[0]}" class="flex-col !gap-0 !px-3 !py-1.5 text-xs" onclick="go('${n[0]}')"><span class="text-lg">${n[1]}</span>${n[2]}</a>`).join('');
+ go('home')}
+function go(v){cur=v;document.querySelectorAll('[data-v]').forEach(a=>a.classList.toggle('on',a.dataset.v===v));
+ $('#view').innerHTML=({home,patients,meds,tasks,tools,alerts})[v]();scrollTo(0,0);$('#bell').textContent=A.length}
+
+const pRow=p=>`<button onclick="pat(${p.id})" class="card p-3 sm:p-4 w-full text-left flex items-center gap-3 sm:gap-4 !min-h-[72px]">
+ <div class="w-11 h-11 shrink-0 rounded-full flex items-center justify-center font-extrabold ${p.st}">${p.name.split(' ').map(x=>x[0]).join('')}</div>
  <div class="flex-1 min-w-0"><div class="font-bold truncate">${p.name} <span class="mute font-normal text-sm">· ${p.age}y</span></div><div class="mute text-sm truncate">Bed ${p.bed} · ${p.dx}</div></div>
- <div class="text-right"><span class="chip ${p.st}">${lab[p.st]}</span><div class="text-xs mute mt-1">SpO₂ ${p.spo2}% · HR ${p.hr}</div></div></button>`;
+ <div class="text-right shrink-0"><span class="chip ${p.st}">${lab[p.st]}</span><div class="text-xs mute mt-1">SpO₂ ${p.spo2}%<span class="hidden sm:inline"> · HR ${p.hr}</span></div></div></button>`;
 
-    function home() {
-      const due = M.filter(m => !m.done).length, open = T.filter(t => !t.done).length;
-      return `<div class="grid lg:grid-cols-3 gap-4">
+function home(){
+ const due=M.filter(m=>!m.done).length,open=T.filter(t=>!t.done).length;
+ return `<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
  <section class="lg:col-span-2 rounded-[24px] p-6 text-white" style="background:linear-gradient(135deg,#0b6e6e,#072f33)">
   <p class="opacity-80 text-sm">Day shift · 07:00 – 15:00 · Ward A/B</p>
   <div class="text-3xl md:text-4xl font-extrabold mt-1">${P.length} patients assigned</div>
   <div class="grid grid-cols-3 gap-3 mt-5 text-center">
    <div class="rounded-2xl p-3 bg-white/15"><div class="text-2xl font-extrabold">${due}</div><div class="text-xs opacity-80">Meds due</div></div>
    <div class="rounded-2xl p-3 bg-white/15"><div class="text-2xl font-extrabold">${open}</div><div class="text-xs opacity-80">Open tasks</div></div>
-   <div class="rounded-2xl p-3 bg-white/15"><div class="text-2xl font-extrabold">${P.filter(p => p.st === 'crit').length}</div><div class="text-xs opacity-80">Critical</div></div>
+   <div class="rounded-2xl p-3 bg-white/15"><div class="text-2xl font-extrabold">${P.filter(p=>p.st==='crit').length}</div><div class="text-xs opacity-80">Critical</div></div>
   </div></section>
  <section class="card p-5"><h3 class="font-extrabold mb-3">Quick actions</h3>
   <div class="grid grid-cols-3 gap-2 text-center text-xs font-semibold">
-  ${[['🩺', 'Vitals', "go('patients')"], ['💊', 'Give med', "go('meds')"], ['📝', 'Note', "noteM()"], ['🔄', 'Handover', "handM()"], ['🧮', 'Dose calc', "go('tools')"], ['🚨', 'Call MD', "toast('Doctor on call paged')"]].map(a => `<button onclick="${a[2]}" class="rounded-2xl py-3" style="background:var(--soft)"><div class="text-xl">${a[0]}</div>${a[1]}</button>`).join('')}
+  ${[['🩺','Vitals',"go('patients')"],['💊','Give med',"go('meds')"],['📝','Note',"noteM()"],['🔄','Handover',"handM()"],['🧮','Dose calc',"go('tools')"],['🚨','Call MD',"toast('Doctor on call paged')"]].map(a=>`<button onclick="${a[2]}" class="rounded-2xl py-3" style="background:var(--soft)"><div class="text-xl">${a[0]}</div>${a[1]}</button>`).join('')}
   </div></section>
  <section class="lg:col-span-2"><div class="flex justify-between mb-2"><h3 class="font-extrabold">Patients needing attention</h3><a class="brand font-semibold cursor-pointer text-sm" onclick="go('patients')">See all</a></div>
-  <div class="grid gap-2">${[...P].sort((a, b) => 'cwo'.indexOf(a.st[0] === 'c' ? 'c' : a.st[0] === 'w' ? 'w' : 'o') - 'cwo'.indexOf(b.st[0] === 'c' ? 'c' : b.st[0] === 'w' ? 'w' : 'o')).slice(0, 3).map(pRow).join('')}</div></section>
+  <div class="grid gap-2">${[...P].sort((a,b)=>'cwo'.indexOf(a.st[0]==='c'?'c':a.st[0]==='w'?'w':'o')-'cwo'.indexOf(b.st[0]==='c'?'c':b.st[0]==='w'?'w':'o')).slice(0,3).map(pRow).join('')}</div></section>
  <section class="card p-5"><div class="flex justify-between mb-3"><h3 class="font-extrabold">Next medications</h3><a class="brand font-semibold cursor-pointer text-sm" onclick="go('meds')">All</a></div>
-  ${M.filter(m => !m.done).slice(0, 3).map(m => `<div class="flex gap-3 py-2 border-b last:border-0" style="border-color:var(--line)"><b class="brand w-12">${m.t}</b><div><div class="font-semibold text-sm">${m.d}</div><div class="mute text-xs">${m.p}</div></div></div>`).join('') || '<p class="mute">All meds given.</p>'}</section>
- <section class="lg:col-span-3 card p-5"><h3 class="font-extrabold mb-3">Live alerts</h3>${alertList()}</section></div>`
-    }
-    function alertList() { return A.length ? A.map((a, i) => `<div class="flex items-center gap-3 py-2 border-b last:border-0" style="border-color:var(--line)"><span class="w-2.5 h-2.5 rounded-full ${a.c === 'crit' ? 'pulse' : ''}" style="background:${a.c === 'crit' ? 'var(--warn)' : 'var(--amb)'}"></span><div class="flex-1 text-sm font-semibold">${a.x}<div class="mute text-xs font-normal">${a.t}</div></div><button class="chip ok" onclick="A.splice(${i},1);go(cur)">Acknowledge</button></div>`).join('') : '<p class="mute">No active alerts. Nice work.</p>' }
-    function alerts() { return `<section class="card p-5 max-w-2xl"><h3 class="font-extrabold mb-3">Alerts</h3>${alertList()}</section>` }
+  ${M.filter(m=>!m.done).slice(0,3).map(m=>`<div class="flex gap-3 py-2 border-b last:border-0" style="border-color:var(--line)"><b class="brand w-12">${m.t}</b><div><div class="font-semibold text-sm">${m.d}</div><div class="mute text-xs">${m.p}</div></div></div>`).join('')||'<p class="mute">All meds given.</p>'}</section>
+ <section class="lg:col-span-3 card p-5"><h3 class="font-extrabold mb-3">Live alerts</h3>${alertList()}</section></div>`}
+function alertList(){return A.length?A.map((a,i)=>`<div class="flex items-center gap-3 py-2 border-b last:border-0" style="border-color:var(--line)"><span class="w-2.5 h-2.5 rounded-full ${a.c==='crit'?'pulse':''}" style="background:${a.c==='crit'?'var(--warn)':'var(--amb)'}"></span><div class="flex-1 text-sm font-semibold">${a.x}<div class="mute text-xs font-normal">${a.t}</div></div><button class="chip ok" onclick="A.splice(${i},1);go(cur)">Acknowledge</button></div>`).join(''):'<p class="mute">No active alerts. Nice work.</p>'}
+function alerts(){return `<section class="card p-5 max-w-2xl"><h3 class="font-extrabold mb-3">Alerts</h3>${alertList()}</section>`}
 
-    function patients() { return `<div class="flex gap-2 mb-3"><input class="inp md:max-w-md" placeholder="Search name, bed or diagnosis" oninput="fp(this.value)"><button class="btn whitespace-nowrap" onclick="pForm()">+ Add patient</button></div><div id="pl" class="grid md:grid-cols-2 gap-2">${P.map(pRow).join('') || emptyP()}</div>` }
-    function emptyP() { return '<p class="mute p-4">No patients yet. Tap "Add patient" to admit one.</p>' }
-    function fp(q) { q = q.toLowerCase(); $('#pl').innerHTML = P.filter(p => (p.name + p.bed + p.dx).toLowerCase().includes(q)).map(pRow).join('') || '<p class="mute p-4">No patient matches. Check the spelling.</p>' }
-    let nid = 100;
-    function pForm(id) {
-      const p = id ? P.find(x => x.id === id) : { name: '', age: '', bed: '', dx: '', note: '', st: 'ok' };
-      openM(`<div class="flex justify-between"><h2 class="text-xl font-extrabold">${id ? 'Edit patient' : 'Add patient'}</h2><button onclick="closeM()" class="text-2xl" aria-label="Close">×</button></div>
+function patients(){return `<div class="flex gap-2 mb-3"><input class="inp min-w-0 flex-1 md:max-w-md" placeholder="Search name, bed or diagnosis" oninput="fp(this.value)"><button class="btn whitespace-nowrap" onclick="pForm()">+ Add patient</button></div><div id="pl" class="grid grid-cols-1 md:grid-cols-2 gap-2">${P.map(pRow).join('')||emptyP()}</div>`}
+function emptyP(){return '<p class="mute p-4">No patients yet. Tap "Add patient" to admit one.</p>'}
+function fp(q){q=q.toLowerCase();$('#pl').innerHTML=P.filter(p=>(p.name+p.bed+p.dx).toLowerCase().includes(q)).map(pRow).join('')||'<p class="mute p-4">No patient matches. Check the spelling.</p>'}
+let nid=100;
+function pForm(id){const p=id?P.find(x=>x.id===id):{name:'',age:'',bed:'',dx:'',note:'',st:'ok'};
+ openM(`<div class="flex justify-between"><h2 class="text-xl font-extrabold">${id?'Edit patient':'Add patient'}</h2><button onclick="closeM()" class="text-2xl" aria-label="Close">×</button></div>
  <label class="text-sm font-semibold block mt-4">Full name</label><input id="fn" class="inp mt-1" value="${p.name}">
  <div class="grid grid-cols-2 gap-2 mt-3"><div><label class="text-sm font-semibold">Age</label><input id="fa" class="inp mt-1" inputmode="numeric" value="${p.age}"></div><div><label class="text-sm font-semibold">Bed</label><input id="fb" class="inp mt-1" placeholder="A-01" value="${p.bed}"></div></div>
  <label class="text-sm font-semibold block mt-3">Diagnosis</label><input id="fd" class="inp mt-1" value="${p.dx}">
- <label class="text-sm font-semibold block mt-3">Status</label><select id="fs" class="inp mt-1">${['ok', 'watch', 'crit'].map(s => `<option value="${s}" ${p.st === s ? 'selected' : ''}>${lab[s]}</option>`).join('')}</select>
+ <label class="text-sm font-semibold block mt-3">Status</label><select id="fs" class="inp mt-1">${['ok','watch','crit'].map(s=>`<option value="${s}" ${p.st===s?'selected':''}>${lab[s]}</option>`).join('')}</select>
  <label class="text-sm font-semibold block mt-3">Care note</label><textarea id="fnote" class="inp mt-1" rows="3">${p.note}</textarea>
  <p id="fe" class="hide text-sm mt-3 font-semibold" style="color:var(--warn)"></p>
- <button class="btn w-full mt-4" onclick="saveP(${id || 0})">${id ? 'Save changes' : 'Add patient'}</button>`)
-    }
-    function saveP(id) {
-      const g = k => $(k).value.trim(); const e = m => { $('#fe').textContent = m; $('#fe').classList.remove('hide') };
-      const age = +g('#fa');
-      if (!g('#fn')) return e('Enter the patient name.');
-      if (!age || age < 0 || age > 120) return e('Enter an age between 0 and 120.');
-      if (!g('#fb')) return e('Enter a bed number.');
-      if (P.some(x => x.bed.toLowerCase() === g('#fb').toLowerCase() && x.id !== id)) return e('That bed is already occupied.');
-      const d = { name: g('#fn'), age, bed: g('#fb').toUpperCase(), dx: g('#fd') || 'Not specified', st: $('#fs').value, note: g('#fnote') || 'No notes yet.' };
-      if (id) { const p = P.find(x => x.id === id); const old = p.name; Object.assign(p, d); M.forEach(m => { if (m.p === old) m.p = d.name }) }
-      else P.push({ id: ++nid, hr: 75, bp: '120/80', spo2: 98, t: 36.7, ...d });
-      closeM(); toast(id ? 'Patient updated' : 'Patient added'); go('patients')
-    }
-    function delP(id) {
-      const p = P.find(x => x.id === id);
-      openM(`<h2 class="text-xl font-extrabold">Delete ${p.name}?</h2><p class="mute mt-2">This removes the patient, their scheduled meds and alerts. You can't undo this.</p>
- <div class="grid grid-cols-2 gap-2 mt-5"><button class="card py-3 font-bold" onclick="closeM()">Cancel</button><button class="btn" style="background:var(--warn)" onclick="confirmDel(${id})">Delete patient</button></div>`)
-    }
-    function confirmDel(id) {
-      const p = P.find(x => x.id === id);
-      P = P.filter(x => x.id !== id); M = M.filter(m => m.p !== p.name); A = A.filter(a => !a.x.startsWith(p.name));
-      closeM(); toast('Patient deleted'); go('patients')
-    }
-    function pat(id) {
-      const p = P.find(x => x.id === id);
-      const v = (l, val, bad) => `<div class="rounded-2xl p-3 text-center" style="background:${bad ? 'var(--warnsoft)' : 'var(--soft)'}"><div class="text-xl font-extrabold" style="color:${bad ? 'var(--warn)' : 'var(--brand)'}">${val}</div><div class="text-xs mute">${l}</div></div>`;
-      openM(`<div class="flex justify-between"><div><h2 class="text-xl font-extrabold">${p.name}</h2><p class="mute text-sm">${p.age}y · Bed ${p.bed} · ${p.dx}</p></div><button onclick="closeM()" class="text-2xl" aria-label="Close">×</button></div>
- <div class="grid grid-cols-4 gap-2 mt-4">${v('HR', p.hr, p.hr > 100)}${v('BP', p.bp, false)}${v('SpO₂', p.spo2 + '%', p.spo2 < 94)}${v('Temp', p.t + '°', p.t >= 38)}</div>
+ <button class="btn w-full mt-4" onclick="saveP(${id||0})">${id?'Save changes':'Add patient'}</button>`)}
+function saveP(id){const g=k=>$(k).value.trim();const e=m=>{$('#fe').textContent=m;$('#fe').classList.remove('hide')};
+ const age=+g('#fa');
+ if(!g('#fn'))return e('Enter the patient name.');
+ if(!age||age<0||age>120)return e('Enter an age between 0 and 120.');
+ if(!g('#fb'))return e('Enter a bed number.');
+ if(P.some(x=>x.bed.toLowerCase()===g('#fb').toLowerCase()&&x.id!==id))return e('That bed is already occupied.');
+ const d={name:g('#fn'),age,bed:g('#fb').toUpperCase(),dx:g('#fd')||'Not specified',st:$('#fs').value,note:g('#fnote')||'No notes yet.'};
+ if(id){const p=P.find(x=>x.id===id);const old=p.name;Object.assign(p,d);M.forEach(m=>{if(m.p===old)m.p=d.name})}
+ else P.push({id:++nid,hr:75,bp:'120/80',spo2:98,t:36.7,...d});
+ closeM();toast(id?'Patient updated':'Patient added');go('patients')}
+function delP(id){const p=P.find(x=>x.id===id);
+ openM(`<h2 class="text-xl font-extrabold">Delete ${p.name}?</h2><p class="mute mt-2">This removes the patient, their scheduled meds and alerts. You can't undo this.</p>
+ <div class="grid grid-cols-2 gap-2 mt-5"><button class="card py-3 font-bold" onclick="closeM()">Cancel</button><button class="btn" style="background:var(--warn)" onclick="confirmDel(${id})">Delete patient</button></div>`)}
+function confirmDel(id){const p=P.find(x=>x.id===id);
+ P=P.filter(x=>x.id!==id);M=M.filter(m=>m.p!==p.name);A=A.filter(a=>!a.x.startsWith(p.name));
+ closeM();toast('Patient deleted');go('patients')}
+function pat(id){const p=P.find(x=>x.id===id);
+ const v=(l,val,bad)=>`<div class="rounded-2xl p-3 text-center" style="background:${bad?'var(--warnsoft)':'var(--soft)'}"><div class="text-xl font-extrabold" style="color:${bad?'var(--warn)':'var(--brand)'}">${val}</div><div class="text-xs mute">${l}</div></div>`;
+ openM(`<div class="flex justify-between"><div><h2 class="text-xl font-extrabold">${p.name}</h2><p class="mute text-sm">${p.age}y · Bed ${p.bed} · ${p.dx}</p></div><button onclick="closeM()" class="text-2xl" aria-label="Close">×</button></div>
+ <div class="vg grid grid-cols-4 gap-2 mt-4">${v('HR',p.hr,p.hr>100)}${v('BP',p.bp,false)}${v('SpO₂',p.spo2+'%',p.spo2<94)}${v('Temp',p.t+'°',p.t>=38)}</div>
  <p class="mt-4 text-sm"><b>Care note:</b> ${p.note}</p>
  <h4 class="font-bold mt-5 mb-2">Record vitals</h4>
- <div class="grid grid-cols-4 gap-2"><input id="nh" class="inp !p-2" placeholder="HR" inputmode="numeric"><input id="nb" class="inp !p-2" placeholder="BP"><input id="ns" class="inp !p-2" placeholder="SpO₂" inputmode="numeric"><input id="nt" class="inp !p-2" placeholder="Temp" inputmode="decimal"></div>
+ <div class="vg grid grid-cols-4 gap-2"><input id="nh" class="inp !px-3" placeholder="HR" inputmode="numeric"><input id="nb" class="inp !px-3" placeholder="BP"><input id="ns" class="inp !px-3" placeholder="SpO₂" inputmode="numeric"><input id="nt" class="inp !px-3" placeholder="Temp" inputmode="decimal"></div>
  <button class="btn w-full mt-3" onclick="saveV(${id})">Save vitals</button>
- <div class="grid grid-cols-2 gap-2 mt-3"><button class="card py-3 font-bold brand" onclick="pForm(${id})">Edit patient</button><button class="card py-3 font-bold" style="color:var(--warn)" onclick="delP(${id})">Delete patient</button></div>`)
-    }
-    function saveV(id) {
-      const p = P.find(x => x.id === id); const g = k => $(k).value.trim();
-      if (g('#nh')) p.hr = +g('#nh'); if (g('#nb')) p.bp = g('#nb'); if (g('#ns')) p.spo2 = +g('#ns'); if (g('#nt')) p.t = +g('#nt');
-      p.st = (p.spo2 < 93 || p.hr > 120 || p.t >= 39) ? 'crit' : (p.spo2 < 95 || p.hr > 100 || p.t >= 37.8) ? 'watch' : 'ok';
-      if (p.st === 'crit') A.unshift({ c: 'crit', x: `${p.name} vitals critical – notify doctor`, t: 'just now' });
-      closeM(); toast('Vitals saved'); go(cur)
-    }
+ <div class="grid grid-cols-2 gap-2 mt-3"><button class="card py-3 font-bold brand" onclick="pForm(${id})">Edit patient</button><button class="card py-3 font-bold" style="color:var(--warn)" onclick="delP(${id})">Delete patient</button></div>`)}
+function saveV(id){const p=P.find(x=>x.id===id);const g=k=>$(k).value.trim();
+ if(g('#nh'))p.hr=+g('#nh');if(g('#nb'))p.bp=g('#nb');if(g('#ns'))p.spo2=+g('#ns');if(g('#nt'))p.t=+g('#nt');
+ p.st=(p.spo2<93||p.hr>120||p.t>=39)?'crit':(p.spo2<95||p.hr>100||p.t>=37.8)?'watch':'ok';
+ if(p.st==='crit')A.unshift({c:'crit',x:`${p.name} vitals critical – notify doctor`,t:'just now'});
+ closeM();toast('Vitals saved');go(cur)}
 
-    function meds() {
-      return `<div class="card p-5 max-w-2xl"><h3 class="font-extrabold mb-1">Medication round</h3><p class="mute text-sm mb-3">Tap to confirm after checking the five rights.</p>
- ${M.map((m, i) => `<label class="flex items-center gap-4 py-3 border-b last:border-0 cursor-pointer" style="border-color:var(--line)"><input type="checkbox" class="w-6 h-6" ${m.done ? 'checked' : ''} onchange="M[${i}].done=this.checked;toast(this.checked?'Given: '+M[${i}].d:'Marked not given')"><b class="brand w-14">${m.t}</b><div><div class="font-semibold">${m.d}</div><div class="mute text-sm">${m.p}</div></div></label>`).join('')}</div>`
-    }
+function meds(){return `<div class="card p-5 max-w-2xl"><h3 class="font-extrabold mb-1">Medication round</h3><p class="mute text-sm mb-3">Tap to confirm after checking the five rights.</p>
+ ${M.map((m,i)=>`<label class="flex items-center gap-4 py-3 border-b last:border-0 cursor-pointer" style="border-color:var(--line)"><input type="checkbox" class="w-6 h-6" ${m.done?'checked':''} onchange="M[${i}].done=this.checked;toast(this.checked?'Given: '+M[${i}].d:'Marked not given')"><b class="brand w-14">${m.t}</b><div><div class="font-semibold">${m.d}</div><div class="mute text-sm">${m.p}</div></div></label>`).join('')}</div>`}
 
-    function tasks() {
-      return `<div class="card p-5 max-w-2xl"><h3 class="font-extrabold mb-3">Shift tasks</h3>
- ${T.map((t, i) => `<label class="flex items-center gap-4 py-3 border-b cursor-pointer" style="border-color:var(--line)"><input type="checkbox" class="w-6 h-6" ${t.done ? 'checked' : ''} onchange="T[${i}].done=this.checked"><span class="flex-1 ${t.done ? 'line-through mute' : 'font-semibold'}">${t.x}</span>${t.hi ? '<span class="chip crit">Urgent</span>' : ''}</label>`).join('')}
+function tasks(){return `<div class="card p-5 max-w-2xl"><h3 class="font-extrabold mb-3">Shift tasks</h3>
+ ${T.map((t,i)=>`<label class="flex items-center gap-4 py-3 border-b cursor-pointer" style="border-color:var(--line)"><input type="checkbox" class="w-6 h-6" ${t.done?'checked':''} onchange="T[${i}].done=this.checked"><span class="flex-1 ${t.done?'line-through mute':'font-semibold'}">${t.x}</span>${t.hi?'<span class="chip crit">Urgent</span>':''}</label>`).join('')}
  <div class="flex gap-2 mt-4"><input id="nt2" class="inp" placeholder="Add a task"><button class="btn" onclick="const v=$('#nt2').value.trim();if(v){T.push({x:v,done:false});go('tasks')}">Add</button></div></div>`}
 
-    function tools() {
-      return `<div class="grid md:grid-cols-2 gap-4 max-w-4xl">
+function tools(){return `<div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl">
  <div class="card p-5"><h3 class="font-extrabold mb-3">Dose calculator</h3>
   <input id="dw" class="inp mb-2" inputmode="decimal" placeholder="Patient weight (kg)" oninput="calc()"><input id="dd" class="inp mb-2" inputmode="decimal" placeholder="Dose (mg per kg)" oninput="calc()"><input id="dc" class="inp mb-3" inputmode="decimal" placeholder="Concentration (mg per mL)" oninput="calc()">
   <div id="dr" class="rounded-2xl p-4 font-bold" style="background:var(--soft);color:var(--brand)">Enter values to calculate.</div></div>
  <div class="card p-5"><h3 class="font-extrabold mb-3">IV drip rate</h3>
   <input id="iv" class="inp mb-2" inputmode="decimal" placeholder="Volume (mL)" oninput="drip()"><input id="ih" class="inp mb-2" inputmode="decimal" placeholder="Time (hours)" oninput="drip()"><input id="if" class="inp mb-3" inputmode="decimal" placeholder="Drop factor (gtt/mL, e.g. 15)" oninput="drip()">
   <div id="ir" class="rounded-2xl p-4 font-bold" style="background:var(--soft);color:var(--brand)">Enter values to calculate.</div></div></div>`}
-    function calc() { const w = +$('#dw').value, d = +$('#dd').value, c = +$('#dc').value; $('#dr').innerHTML = w && d && c ? `Dose: ${(w * d).toFixed(1)} mg<br>Draw up: ${(w * d / c).toFixed(2)} mL` : 'Enter values to calculate.' }
-    function drip() { const v = +$('#iv').value, h = +$('#ih').value, f = +$('#if').value; $('#ir').innerHTML = v && h && f ? `${Math.round(v / h)} mL/hr<br>${Math.round(v * f / (h * 60))} drops/min` : 'Enter values to calculate.' }
+function calc(){const w=+$('#dw').value,d=+$('#dd').value,c=+$('#dc').value;$('#dr').innerHTML=w&&d&&c?`Dose: ${(w*d).toFixed(1)} mg<br>Draw up: ${(w*d/c).toFixed(2)} mL`:'Enter values to calculate.'}
+function drip(){const v=+$('#iv').value,h=+$('#ih').value,f=+$('#if').value;$('#ir').innerHTML=v&&h&&f?`${Math.round(v/h)} mL/hr<br>${Math.round(v*f/(h*60))} drops/min`:'Enter values to calculate.'}
 
-    function noteM() {
-      openM(`<div class="flex justify-between"><h2 class="text-xl font-extrabold">Nursing note</h2><button onclick="closeM()" class="text-2xl" aria-label="Close">×</button></div>
- <select id="np" class="inp mt-4">${P.map(p => `<option>${p.name} – ${p.bed}</option>`).join('')}</select>
- <textarea class="inp mt-2" rows="4" placeholder="Write your observation"></textarea><button class="btn w-full mt-3" onclick="closeM();toast('Note saved')">Save note</button>`)
-    }
-    function handM() {
-      openM(`<div class="flex justify-between"><h2 class="text-xl font-extrabold">Shift handover (SBAR)</h2><button onclick="closeM()" class="text-2xl" aria-label="Close">×</button></div>
- ${['Situation', 'Background', 'Assessment', 'Recommendation'].map(s => `<label class="text-sm font-semibold block mt-3">${s}</label><textarea class="inp mt-1" rows="2"></textarea>`).join('')}
- <button class="btn w-full mt-4" onclick="closeM();toast('Handover sent to night shift')">Send handover</button>`)
-    }
-  </script>
+function noteM(){openM(`<div class="flex justify-between"><h2 class="text-xl font-extrabold">Nursing note</h2><button onclick="closeM()" class="text-2xl" aria-label="Close">×</button></div>
+ <select id="np" class="inp mt-4">${P.map(p=>`<option>${p.name} – ${p.bed}</option>`).join('')}</select>
+ <textarea class="inp mt-2" rows="4" placeholder="Write your observation"></textarea><button class="btn w-full mt-3" onclick="closeM();toast('Note saved')">Save note</button>`)}
+function handM(){openM(`<div class="flex justify-between"><h2 class="text-xl font-extrabold">Shift handover (SBAR)</h2><button onclick="closeM()" class="text-2xl" aria-label="Close">×</button></div>
+ ${['Situation','Background','Assessment','Recommendation'].map(s=>`<label class="text-sm font-semibold block mt-3">${s}</label><textarea class="inp mt-1" rows="2"></textarea>`).join('')}
+ <button class="btn w-full mt-4" onclick="closeM();toast('Handover sent to night shift')">Send handover</button>`)}
+</script>
 </body>
-
 </html>
